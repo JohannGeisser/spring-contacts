@@ -21,4 +21,7 @@ public class ContactService {
         return contactRepository.findAll();
     }
 
+    public void addNewContact(Contact contact) {
+        System.out.println(contact);
+    }
 }
