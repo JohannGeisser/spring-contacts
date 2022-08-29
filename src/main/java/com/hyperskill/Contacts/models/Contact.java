@@ -3,9 +3,23 @@ package com.hyperskill.Contacts.models;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.*;
+
 @Getter
 @Setter
+@Entity
+@Table
 public class Contact {
+    @Id
+    @SequenceGenerator(
+            name = "contact_sequence",
+            sequenceName = "contact_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "contact_sequence"
+    )
     private Long id;
     private String name;
     private String phoneNumber;
