@@ -29,4 +29,12 @@ public class ContactService {
         }
         contactRepository.save(contact);
     }
+
+    public void deleteContact(Long contactId) {
+        boolean exists = contactRepository.existsById(contactId);
+        if (!exists) {
+            throw new IllegalStateException("contact with id " + contactId + " does not exists");
+        }
+        contactRepository.deleteById(contactId);
+    }
 }
