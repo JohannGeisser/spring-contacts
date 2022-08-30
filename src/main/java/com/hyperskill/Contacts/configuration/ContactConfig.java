@@ -7,17 +7,23 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
+import java.util.Scanner;
 
 @Configuration
 public class ContactConfig {
 
+    Scanner scanner = new Scanner(System.in);
+
     @Bean
     CommandLineRunner commandLineRunner(ContactRepository repository) {
         return args -> {
-            Contact johann = new Contact("Johann", "75816516");
-            Contact dobid = new Contact("Dobid", "74364534");
-
-            repository.saveAll(List.of(johann, dobid));
+            System.out.println("Enter the name:");
+            String name = scanner.next();
+            System.out.println("Enter the phone number");
+            String number = scanner.next();
+            Contact contact = new Contact(name, number);
+            repository.save(contact);
+            System.out.println("A record created!");
         };
     }
 }
