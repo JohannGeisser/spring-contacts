@@ -40,6 +40,10 @@ public class ContactService {
         contactRepository.deleteById(contactId);
     }
 
+    public long countRecords() {
+        return contactRepository.count();
+    }
+
     @Transactional
     public void updateContact(Long contactId, String name, String number) {
 
