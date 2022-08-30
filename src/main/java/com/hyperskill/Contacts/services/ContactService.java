@@ -9,11 +9,13 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Scanner;
 
 @Service
 public class ContactService {
 
     private final ContactRepository contactRepository;
+    private final Scanner scanner = new Scanner(System.in);
 
     @Autowired
     public ContactService(ContactRepository contactRepository) {
@@ -64,4 +66,28 @@ public class ContactService {
             System.out.println(records.get(i));
         }
     }
+
+    @Transactional
+    public void updateContactById(Long contactId) {
+        System.out.println("Select a field (name, number):");
+        String field = scanner.next();
+        Contact contact = contactRepository.findById(contactId).orElseThrow(() -> new IllegalStateException("contact with id " + contactId + " does not exists"));
+        switch (field) {
+            case "name":
+                System.out.println("Enter the name:");
+                String newName = scanner.next();
+                contact.setName(newName);
+                System.out.println("The record updated!");
+                break;
+            case "number":
+                System.out.println("Enter the number:");
+                String newNumber = scanner.next();
+                contact.setPhoneNumber(newNumber);
+                System.out.println("The record updated!");
+                break;
+            default:
+                System.out.println("No valid option");
+        }
+    }
+
 }

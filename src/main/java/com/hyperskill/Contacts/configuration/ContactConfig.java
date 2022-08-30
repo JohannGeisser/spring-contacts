@@ -1,7 +1,6 @@
 package com.hyperskill.Contacts.configuration;
 
 import com.hyperskill.Contacts.models.Contact;
-import com.hyperskill.Contacts.repositories.ContactRepository;
 import com.hyperskill.Contacts.services.ContactService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -30,28 +29,26 @@ public class ContactConfig {
                         contactService.addNewContact(new Contact(name, phoneNumber));
                         System.out.println("The record added.");
                         break;
-//                    case "remove":
-//                        if (repository.count() == 0) {
-//                            System.out.println("No records to remove!");
-//                        } else {
-//                            //phoneBook.displayRecords();
-//                            repository.findAll();
-//                            System.out.println("Select a record:");
-//                            Long recordToRemove = scanner.nextLong();
-//                            //phoneBook.removeRecords(recordToRemove);
-//                            repository.deleteById(recordToRemove);
-//                        }
-//                        break;
-//                    case "edit":
-//                        if (phoneBook.countRecords() == 0) {
-//                            System.out.println("No records to edit!");
-//                        } else {
-//                            phoneBook.displayRecords();
-//                            System.out.println("Select a record:");
-//                            int record = scanner.nextInt() - 1;
-//                            phoneBook.editRecord(record);
-//                        }
-//                        break;
+                    case "remove":
+                        if (contactService.countRecords() == 0) {
+                            System.out.println("No records to remove!");
+                        } else {
+                            contactService.displayRecords();
+                            System.out.println("Select a record:");
+                            Long recordToRemove = scanner.nextLong();
+                            contactService.deleteContact(recordToRemove);
+                        }
+                        break;
+                    case "edit":
+                        if (contactService.countRecords() == 0) {
+                            System.out.println("No records to edit!");
+                        } else {
+                            contactService.displayRecords();
+                            System.out.println("Select a record:");
+                            Long record = scanner.nextLong();
+                            contactService.updateContactById(record);
+                        }
+                        break;
                     case "count":
                         System.out.println("The Phone Book has " + contactService.countRecords() + " records.");
                         break;
