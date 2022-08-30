@@ -57,4 +57,11 @@ public class ContactService {
         }
 
     }
+
+    public void displayRecords() {
+        List<Contact> records = contactRepository.findAll();
+        for (int i = 0; i < records.size(); i++) {
+            System.out.println(records.get(i));
+        }
+    }
 }

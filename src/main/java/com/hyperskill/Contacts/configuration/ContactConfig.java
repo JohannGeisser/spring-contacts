@@ -55,9 +55,9 @@ public class ContactConfig {
                     case "count":
                         System.out.println("The Phone Book has " + contactService.countRecords() + " records.");
                         break;
-//                    case "list":
-//                        phoneBook.displayRecords();
-//                        break;
+                    case "list":
+                        contactService.displayRecords();
+                        break;
                     case "exit":
                         System.out.println("Exiting");
                         exit = true;
