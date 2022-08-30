@@ -36,10 +36,21 @@ public class Contact {
     public Contact(String name, String phoneNumber) {
         this.name = name;
         this.phoneNumber = phoneNumber;
+        if(!hasNumber(phoneNumber)) {
+            System.out.println("Wrong number format!");
+            this.phoneNumber = "[no number]";
+        } else {
+            this.phoneNumber = phoneNumber;
+        }
     }
+
 
     @Override
     public String toString() {
         return id + ". " + name + ", " + phoneNumber;
+    }
+
+    public static boolean hasNumber(String phoneNumber) {
+        return phoneNumber.contains("+");
     }
 }
